@@ -1,108 +1,109 @@
 {:Scene("/main.mheg+" 0)
-:Items (
-	{:IntegerConst GRID_LEFT :ConstValue 20 }
-	{:IntegerConst GRID_TOP :ConstValue 50 }
-	{:IntegerConst BOX_SIZE :ConstValue 55 }
-	{:IntegerConst BOX_SPACING :ConstValue 5 }
-	
-	{:Text txtTitle1
-		:OrigContent "Example colours"
-		:OrigBoxSize 400 40
-		:OrigPosition 10 10
-		:HJustification start
-		:VJustification centre
-	}
-	foreach code (1..4) {
-		{:Rectangle boxRed<code>
-			:OrigBoxSize BOX_SIZE BOX_SIZE
-			:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 0]
-			:OrigRefFillColour '=FF=00=00=00'
-			:OrigRefLineColour '=55=55=55=00'
+	:Items (
+		{:IntegerConst GRID_LEFT :ConstValue 20 }
+		{:IntegerConst GRID_TOP :ConstValue 50 }
+		{:IntegerConst BOX_SIZE :ConstValue 55 }
+		{:IntegerConst BOX_SPACING :ConstValue 5 }
+		
+		{:Text txtTitle1
+			:OrigContent "Example colours"
+			:OrigBoxSize 400 40
+			:OrigPosition 10 10
+			:HJustification start
+			:VJustification centre
 		}
-	} endfor
-	
-	foreach code (1..8) {
-		{:Rectangle boxGreen<code>
-			:OrigBoxSize BOX_SIZE BOX_SIZE
-			:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 1]
-			:OrigRefFillColour '=FF=00=00=00'
-			:OrigRefLineColour '=55=55=55=00'
+		
+		foreach code (1..4) {
+			{:Rectangle boxRed<code>
+				:OrigBoxSize BOX_SIZE BOX_SIZE
+				:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 0]
+				:OrigRefFillColour '=FF=00=00=00'
+				:OrigRefLineColour '=55=55=55=00'
+			}
+		} endfor
+		
+		foreach code (1..8) {
+			{:Rectangle boxGreen<code>
+				:OrigBoxSize BOX_SIZE BOX_SIZE
+				:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 1]
+				:OrigRefFillColour '=FF=00=00=00'
+				:OrigRefLineColour '=55=55=55=00'
+			}
+		} endfor
+		
+		foreach code (1..2) {
+			{:Rectangle boxBlue<code>
+				:OrigBoxSize BOX_SIZE BOX_SIZE
+				:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 2]
+				:OrigRefFillColour '=FF=00=00=00'
+				:OrigRefLineColour '=55=55=55=00'
+			}
+		} endfor
+		
+		foreach code (1..7) {
+			{:Rectangle boxGrey<code>
+				:OrigBoxSize BOX_SIZE BOX_SIZE
+				:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 3]
+				:OrigRefFillColour '=FF=00=00=00'
+				:OrigRefLineColour '=55=55=55=00'
+			}
+		} endfor
+		
+		foreach code (1..8) {
+			{:Rectangle boxExample<code>
+				:OrigBoxSize BOX_SIZE BOX_SIZE
+				:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 4]
+				:OrigRefFillColour '=FF=00=00=00'
+				:OrigRefLineColour '=55=55=55=00'
+			}
+		} endfor
+		
+		{:Link linkSetFills
+			:InitiallyActive	true
+			:EventType			IsRunning
+			:EventSource		linkSetFills
+			:LinkEffect (
+				linkSetFills.Deactivate()
+				
+				// any combination of the following red, green, and blue channels will make a valid colour:
+				boxRed1.SetFillColour('=3F=00=00=00')
+				boxRed2.SetFillColour('=7F=00=00=00')
+				boxRed3.SetFillColour('=BF=00=00=00')
+				boxRed4.SetFillColour('=FF=00=00=00')
+				
+				boxGreen1.SetFillColour('=00=1F=00=00')
+				boxGreen2.SetFillColour('=00=3F=00=00')
+				boxGreen3.SetFillColour('=00=5F=00=00')
+				boxGreen4.SetFillColour('=00=7F=00=00')
+				boxGreen5.SetFillColour('=00=9F=00=00')
+				boxGreen6.SetFillColour('=00=BF=00=00')
+				boxGreen7.SetFillColour('=00=DF=00=00')
+				boxGreen8.SetFillColour('=00=FF=00=00')
+				
+				boxBlue1.SetFillColour('=00=00=7F=00')
+				boxBlue2.SetFillColour('=00=00=FF=00')
+				
+				// these are valid grey colours, including black and white
+				boxGrey1.SetFillColour('=00=00=00=00')
+				boxGrey2.SetFillColour('=2A=2A=2A=00')
+				boxGrey3.SetFillColour('=55=55=55=00')
+				boxGrey4.SetFillColour('=7F=7F=7F=00')
+				boxGrey5.SetFillColour('=AA=AA=AA=00')
+				boxGrey6.SetFillColour('=D4=D4=D4=00')
+				boxGrey7.SetFillColour('=FF=FF=FF=00')
+				
+				// other example colours, based on red + green + blue codes
+				boxExample1.SetFillColour('=BF=9F=00=00')
+				boxExample2.SetFillColour('=FF=BF=00=00')
+				boxExample3.SetFillColour('=7F=7F=FF=00')
+				boxExample4.SetFillColour('=00=7F=7F=00')
+				boxExample5.SetFillColour('=7F=00=7F=00')
+				boxExample6.SetFillColour('=FF=7F=FF=00')
+				boxExample7.SetFillColour('=7F=DF=00=00')
+				boxExample8.SetFillColour('=7F=3F=00=00')
+			)
 		}
-	} endfor
-	
-	foreach code (1..2) {
-		{:Rectangle boxBlue<code>
-			:OrigBoxSize BOX_SIZE BOX_SIZE
-			:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 2]
-			:OrigRefFillColour '=FF=00=00=00'
-			:OrigRefLineColour '=55=55=55=00'
-		}
-	} endfor
-	
-	foreach code (1..7) {
-		{:Rectangle boxGrey<code>
-			:OrigBoxSize BOX_SIZE BOX_SIZE
-			:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 3]
-			:OrigRefFillColour '=FF=00=00=00'
-			:OrigRefLineColour '=55=55=55=00'
-		}
-	} endfor
-	
-	foreach code (1..8) {
-		{:Rectangle boxExample<code>
-			:OrigBoxSize BOX_SIZE BOX_SIZE
-			:OrigPosition [GRID_LEFT + (BOX_SIZE + BOX_SPACING) * (<code> - 1)] [GRID_TOP + (BOX_SIZE + BOX_SPACING) * 4]
-			:OrigRefFillColour '=FF=00=00=00'
-			:OrigRefLineColour '=55=55=55=00'
-		}
-	} endfor
-	
-	{:Link linkSetFills
-		:InitiallyActive	true
-		:EventType			IsRunning
-		:EventSource		linkSetFills
-		:LinkEffect (
-			linkSetFills.Deactivate()
-			
-			// any combination of the following red, green, and blue channels will make a valid colour:
-			boxRed1.SetFillColour('=3F=00=00=00')
-			boxRed2.SetFillColour('=7F=00=00=00')
-			boxRed3.SetFillColour('=BF=00=00=00')
-			boxRed4.SetFillColour('=FF=00=00=00')
-			
-			boxGreen1.SetFillColour('=00=1F=00=00')
-			boxGreen2.SetFillColour('=00=3F=00=00')
-			boxGreen3.SetFillColour('=00=5F=00=00')
-			boxGreen4.SetFillColour('=00=7F=00=00')
-			boxGreen5.SetFillColour('=00=9F=00=00')
-			boxGreen6.SetFillColour('=00=BF=00=00')
-			boxGreen7.SetFillColour('=00=DF=00=00')
-			boxGreen8.SetFillColour('=00=FF=00=00')
-			
-			boxBlue1.SetFillColour('=00=00=7F=00')
-			boxBlue2.SetFillColour('=00=00=FF=00')
-			
-			// these are valid grey colours, including black and white
-			boxGrey1.SetFillColour('=00=00=00=00')
-			boxGrey2.SetFillColour('=2A=2A=2A=00')
-			boxGrey3.SetFillColour('=55=55=55=00')
-			boxGrey4.SetFillColour('=7F=7F=7F=00')
-			boxGrey5.SetFillColour('=AA=AA=AA=00')
-			boxGrey6.SetFillColour('=D4=D4=D4=00')
-			boxGrey7.SetFillColour('=FF=FF=FF=00')
-			
-			// other example colours, based on red + green + blue codes
-			boxExample1.SetFillColour('=BF=9F=00=00')
-			boxExample2.SetFillColour('=FF=BF=00=00')
-			boxExample3.SetFillColour('=7F=7F=FF=00')
-			boxExample4.SetFillColour('=00=7F=7F=00')
-			boxExample5.SetFillColour('=7F=00=7F=00')
-			boxExample6.SetFillColour('=FF=7F=FF=00')
-			boxExample7.SetFillColour('=7F=DF=00=00')
-			boxExample8.SetFillColour('=7F=3F=00=00')
-		)
-	}
-)
-:InputEventReg 4
-:SceneCS 720 576
+	)
+	:InputEventReg 4
+	:SceneCS 720 576
 }
